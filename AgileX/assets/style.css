@@ -1,0 +1,79 @@
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+}
+
+.pb-20 {
+    padding-bottom: 20px;
+}
+
+a:hover {
+    opacity: 0.5;
+}
+
+.module {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-evenly;
+}
+
+.module img {
+    height: 40px;
+    width: auto;
+}
+
+.module p {
+    padding: 10px 0px;
+}
+
+.module h4 {
+    font-family: "serif";
+    margin: 5px 0px 0px 20px;
+}
+
+.module a {
+    padding: 10px 15px;
+    background: transparent;
+    color: #F9FAFB;
+    text-decoration: none;
+    border-radius: 0.35rem;
+    border: 1px solid #F9FAFB;;
+    margin: 15px 10px 0px 0px;
+}
+
+.main {
+background:url("/assets/img.jpg");
+background-position: contain;
+border-radius: 0.35rem;
+}
+
+.element {
+border-radius: 5% 5%;
+box-shadow: 0px 5px 5px rgba(0,0,255,0.2);
+background-color:transparent;
+backdrop-filter: blur(10px);
+}
+
+.version{
+border-radius: 5% 5%;
+box-shadow: 0px 5px 5px rgba(0,0,255,0.2);
+background-color:transparent;
+backdrop-filter: blur(10px);
+margin: 0px 0px 0px 0px;
+}
+
+.title{
+background-color:transparent;
+font-variant: uppercase;
+}
+
+.module-input,.module-input-code{
+background-color:transparent;
+}
+
+@media all and (max-width: 768px) {
+
+}
