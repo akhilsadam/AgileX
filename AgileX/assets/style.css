@@ -1,3 +1,10 @@
+:root {
+--main-font-family: Kiona, Aron Grotesque Light, Montserrat Regular;
+--boxshade: 5px 4px 1px black;
+--smallblur: blur(5px);
+}
+
+
 body {
     background-color: #fff;
     color: #000;
@@ -18,6 +25,8 @@ a:hover {
     flex-direction: row;
     align-items: stretch;
     justify-content: space-evenly;
+    padding:0px;
+    margin: 0.5em;
 }
 
 .module img {
@@ -31,7 +40,7 @@ a:hover {
 
 .module h4 {
     font-family: "serif";
-    margin: 5px 0px 0px 20px;
+    margin: 5px 0px 0px 5px;
 }
 
 .module a {
@@ -46,22 +55,25 @@ a:hover {
 
 .main {
 background:url("/assets/img.jpg");
-background-position: contain;
-border-radius: 0.35rem;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .element {
-border-radius: 5% 5%;
-box-shadow: 0px 5px 5px rgba(0,0,255,0.2);
+display: flex;
+flex-direction: column;
+box-shadow: var(--boxshade);
 background-color:transparent;
-backdrop-filter: blur(10px);
+backdrop-filter: var(--smallblur);
+overflow-y: hidden;
 }
 
 .version{
-border-radius: 5% 5%;
-box-shadow: 0px 5px 5px rgba(0,0,255,0.2);
+box-shadow: var(--boxshade);
 background-color:transparent;
-backdrop-filter: blur(10px);
+backdrop-filter: var(--smallblur);
 margin: 0px 0px 0px 0px;
 }
 
@@ -72,6 +84,113 @@ font-variant: uppercase;
 
 .module-input,.module-input-code{
 background-color:transparent;
+margin: 0px 0px 0px 0px;
+}
+
+.module-add{
+  position: sticky;
+  bottom: 0em;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0,0,0,1);
+  mix-blend-mode: hard-light;
+}
+
+#module-new-submit,#module-new{
+  color: #fff;
+  border: none;
+  border-radius: 0% 0%;
+  font-family: var(--main-font-family);
+  -webkit-font-smoothing:auto;
+}
+
+#module-new-submit{
+background-color: rgba(90,90,90,0.5);
+backdrop-filter: blur(10px);
+}
+
+.top{
+  position: sticky;
+  top: 0em;
+  z-index:6;
+  backdrop-filter: blur(40px);
+  background: url("/assets/logo.png");
+  background-size: contain;
+  background-position: calc(100% - 1em) 0%;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-blend-mode: difference;
+  color: #fff;
+  font-family: var(--main-font-family);
+  font-variant-caps: normal;
+  border-radius: 0% 0%;
+}
+
+.top-text{
+}
+
+.name{
+}
+
+.logo{
+background-color: blue;
+-webkit-text-stroke: 2px black;
+mix-blend-mode:overlay;
+color: #fff;
+font-size: 2.6rem; line-height: 1.35; letter-spacing: -.08rem; margin-bottom: 1.2rem; margin-top: 1.2rem;
+filter: lighten(0);
+}
+
+.logo:hover{
+background-color: transparent;
+-webkit-text-stroke: 0.5px blue;
+mix-blend-mode:overlay;
+color: #fff;
+text-decoration: none;
+filter: lighten(1);
+}
+
+#textarea{
+# resize: vertical;
+#height:101%;
+#}
+
+
+.grow-wrap {
+  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+  display: grid;
+}
+.grow-wrap::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+  content: attr(data-replicated-value) " ";
+
+  /* This is how textarea text behaves */
+  white-space: pre-wrap;
+
+  /* Hidden from view, clicks, and screen readers */
+  visibility: hidden;
+}
+.grow-wrap > textarea {
+  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+  resize: none;
+
+  /* Firefox shows scrollbar on growth, you can hide like this. */
+  overflow: hidden;
+}
+.grow-wrap > textarea,
+.grow-wrap::after {
+  /* Identical styling required!! */
+  padding: 0.5rem;
+  font: inherit;
+
+  /* Place on top of each other */
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+
+.grow-wrap{
+padding:0px;
+margin:0px;
+min-height:0px;
 }
 
 @media all and (max-width: 768px) {
