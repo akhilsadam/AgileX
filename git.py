@@ -3,7 +3,7 @@ import subprocess # just to call an arbitrary command e.g. 'ls'
 
 sep = '-'
 ext = ".txt"
-path = "modules/"
+path = "../Modules/"
 title = ""
 
 class cd:
