@@ -137,6 +137,11 @@ modular_comp = \
                                             ],
                                             id={'type':'graph-container','instance':moduleid},
                                         ), 
+                                        html.Div(
+                                            [
+                                            ],
+                                            id={'type':'graph-text','instance':moduleid},
+                                        ), 
                                         dcc.Textarea(id={'type':'graph-container-data','instance':moduleid}, value='testing_values...', readOnly=False, style={'width': '100%','whiteSpace': 'pre-line'}),                                               
                                     ],
                                     className="version one-third column",
@@ -225,7 +230,7 @@ app.clientside_callback(
         return 'via GitGraph.js';
     }
     """,
-    Output({'type':'title','instance':MATCH}, 'value'),
+    Output({'type':'graph-text','instance':MATCH}, 'children'),
     [Input({'type':'graph-container-data','instance':MATCH}, 'value')],
     prevent_initial_call=True,
 )
@@ -234,7 +239,7 @@ app.clientside_callback(
     Input({'type':'module-commit','instance':MATCH}, component_property='n_clicks'),
     State({'type':'module-commit','instance':MATCH}, 'id'),
 )
-def gitlog(n_clicks,id):
+def git_commit_and_log(n_clicks,id):
     global modules
     modulename = str(modules[int(id['instance'])])
     ospath = git.path+modulename+'/'
