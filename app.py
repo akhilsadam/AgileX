@@ -10,8 +10,7 @@ import dash_colorscales as dcs
 from dash.dependencies import Input, Output, State, MATCH, ALL
 from dash.exceptions import PreventUpdate
 from mni import create_mesh_data, default_colorscale
-import ast
-from .git import *
+import git
 
 suptitle = "PlasticPET Paper"
 
@@ -33,8 +32,10 @@ GITHUB_LINK = os.environ.get(
     "https://github.com/akhilsadam/AgileX",
 )
 
+spfold = '.git'
+
 def getfiles():
-    return [f.replace(ext,"") for f in listdir(path) if not isfile(join(path, f))]
+    return [f.replace(git.ext,"") for f in listdir(git.path) if (not isfile(join(git.path, f)) and spfold not in f)]
 modules = []
 #---
 frontend = \
@@ -94,7 +95,7 @@ modular_comp = \
                                             [
                                                 html.Div(
                                                     [
-                                                        dcc.Textarea(id={'type':'module-input-code','instance':moduleid}, value=open(path+modulename+'/'+modulename+ext, "r").read(), style={'width': '100%'}),
+                                                        dcc.Textarea(id={'type':'module-input-code','instance':moduleid}, value=open(git.path+modulename+'/'+modulename+git.ext, "r").read(), style={'width': '100%'}),
                                                     ],
                                                     className="grow-wrap",
                                                 ),
@@ -125,12 +126,18 @@ modular_comp = \
                                 html.Div(
                                     [
                                         html.Div(
-                                                [
-                                                    html.H4(title+modulename),
-                                                ],
+                                            [
+                                                html.H4(git.title+modulename),
+                                            ],
                                             className="title",
                                             id={'type':'title','instance':moduleid},
                                         ),
+                                        html.Div(
+                                            [
+                                            ],
+                                            id={'type':'graph-container','instance':moduleid},
+                                        ), 
+                                        dcc.Textarea(id={'type':'graph-container-data','instance':moduleid}, value='testing_values...', readOnly=False, style={'width': '100%','whiteSpace': 'pre-line'}),                                               
                                     ],
                                     className="version one-third column",
                                 ),
@@ -179,7 +186,7 @@ def update_module(input_value):
 def save_module(n_clicks,value,id):
     global modules
     modulename = str(modules[int(id['instance'])])
-    with open(path+modulename+'/'+modulename+ext, "w") as f:
+    with open(git.path+modulename+'/'+modulename+git.ext, "w") as f:
             f.write(value)
     return "/"
 
@@ -191,16 +198,48 @@ def save_module(n_clicks,value,id):
 def new_module(n_clicks,value):
     if n_clicks > 0:
         modulename = str(value)
-        ospath = path+modulename+'/'
+        ospath = git.path+modulename+'/'
         print(ospath)
         try:
             os.mkdir(ospath)
+            git.git_submodule_init(ospath)
         except: print("path already exists ...")
-        with open(ospath+str(value)+ext, "a") as f:
+        with open(ospath+str(value)+git.ext, "a") as f:
             f.write("")
+        git.git_update("new module "+modulename)
         # global modules
         # modules.append(value)
     return "/"
+
+#GITGRAPH
+app.clientside_callback(
+    """
+    function (value) {
+        alert(value);
+        var graphContainer = document.getElementById("graph-container");
+        var gitgraph = GitgraphJS.createGitgraph(graphContainer, {
+            "orientation": "vertical",
+            "template" : "metro"
+        });
+        gitgraph.import(value);
+        return 'via GitGraph.js';
+    }
+    """,
+    Output({'type':'title','instance':MATCH}, 'value'),
+    [Input({'type':'graph-container-data','instance':MATCH}, 'value')],
+    prevent_initial_call=True,
+)
+
+@app.callback(Output({'type':'graph-container-data','instance':MATCH}, 'value'),
+    Input({'type':'module-commit','instance':MATCH}, component_property='n_clicks'),
+    State({'type':'module-commit','instance':MATCH}, 'id'),
+)
+def gitlog(n_clicks,id):
+    global modules
+    modulename = str(modules[int(id['instance'])])
+    ospath = git.path+modulename+'/'
+    return git.gitparse(ospath)
+
 
 if __name__ == "__main__":
     app.run_server(debug=True)
