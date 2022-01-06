@@ -15,7 +15,7 @@ setTimeout(() =>
 
     function gitgraph_function(data,idstring) {
         const graphContainer = document.getElementById(idstring);
-        alert(graphContainer);
+        console.log(graphContainer);
         const gitgraph = GitgraphJS.createGitgraph(graphContainer, {
             "orientation": "vertical",
             "template" : "metro"

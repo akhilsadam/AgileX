@@ -1,0 +1,13 @@
+name: agilex-environment
+channels:
+  - conda-forge
+dependencies:
+  - os
+  - json
+  - dash
+  - dash_colorscales
+  - time
+  - subprocess
+  - numpy
+  - matplotlib
+  - pathlib

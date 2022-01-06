@@ -10,6 +10,7 @@ import dash_colorscales as dcs
 from dash.dependencies import ClientsideFunction, Input, Output, State, MATCH, ALL
 from dash.exceptions import PreventUpdate
 from mni import create_mesh_data, default_colorscale
+import time
 import git
 
 suptitle = "PlasticPET Paper"
@@ -55,7 +56,6 @@ app.index_string = '''
             {%config%}
             {%scripts%}
             {%renderer%}
-            <a href="/Modules/0/0.txt">Link 1</a>
         </footer>
     </body>
 </html>
@@ -87,7 +87,7 @@ backend = \
 """                
                             html.Div(
                                 [
-                                    html.Div(dcc.Input(id='module-new-submit', type='text')),
+                                    html.Div(dcc.Input(id='module-new-submit', type='text', value='0')),
                                     html.Button('Add Module', id='module-new', n_clicks=0, style={'display': 'block'}),
                                 ],
                                 className="module-add",
@@ -257,6 +257,9 @@ def new_module(n_clicks,value):
 def commit_log(n_clicks,id):
     modulename = str(int(id['instance']))
     os_path = git.path+modulename+'/'
+    #wait for new module generation
+    time.sleep(0.05)
+    #
     git.git_parse(os_path)
     file_path = os_path+git.expfile
     print(os.getcwd())

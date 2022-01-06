@@ -1,6 +1,5 @@
 import os
 import subprocess
-from gga.parse import *
 
 #if you change these, change the corresponding variables in gitgraph_clientside.mjs !
 
@@ -11,8 +10,7 @@ path = "assets/Modules/"
 title = ""
 author = ""
 
-testing = True
-
+testing = False
 
 class cd:
     """Context manager for changing the current working directory"""
@@ -44,7 +42,7 @@ def git_init():
 
 def git_submodule_init(ospath):
     with cd(ospath):
-        subprocess.call("git submodule init")
+        subprocess.call("git init")
         subprocess.call("git checkout master")
 
 
