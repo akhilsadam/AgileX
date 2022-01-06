@@ -1,22 +1,19 @@
-alert("gitgraph_clientside.js");
+console.log("gitgraph_clientside.js");
+
+let expfile = "export.json";
+let path = "assets/Modules/" ;
+
 setTimeout(() => 
 {
-    function gitgraph_function(value,id) {
-        alert(value);
-        alert(id);
-        //var idstring = '{\"instance\":\"'+id['instance']+'\",\"type\":\"'+id['type']+'\"}';
-        let idstring;
-        if (!(typeof id === 'string' || id instanceof String)) 
-        {
-            idstring = JSON.stringify(id, Object.keys(id).sort());
-        }
-        else
-        {
-            idstring = id;
-        }
-        alert(id);
-        import data from value;
-        alert(data);
+    var elements = document.getElementsByClassName("graph-container");
+    var nElements = elements.length;
+    console.log("nElements:",nElements);
+
+    Array.prototype.forEach.call(elements, element => {
+        gitgraph(element);
+      });
+
+    function gitgraph_function(data,idstring) {
         const graphContainer = document.getElementById(idstring);
         alert(graphContainer);
         const gitgraph = GitgraphJS.createGitgraph(graphContainer, {
@@ -27,13 +24,25 @@ setTimeout(() =>
     }
 
     function gitgraph(element){
-        var id = element.id;
+        var idstring = element.id;
+        var id = JSON.parse(idstring);
         console.log(id);
+        var value = "./" + path + id["instance"] + "/" + expfile;
+        console.log(value);
+        fetch(value,
+            {
+                headers : 
+                { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+        .then(response => {
+        return response.json();
+        })
+        .then(data => gitgraph_function(data,idstring));
+        // console.log(data)
+        // gitgraph_function(data,idstring);
     }
-
-    var elements = document.getElementsByClassName("graph-container");
-    var nElements = elements.length;
-    alert(nElements);
-    elements.forEach(gitgraph);
 
 }, 2000);

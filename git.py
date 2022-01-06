@@ -1,13 +1,17 @@
 import os
-import subprocess # just to call an arbitrary command e.g. 'ls'
+import subprocess
 from gga.parse import *
+
+#if you change these, change the corresponding variables in gitgraph_clientside.mjs !
 
 sep = '-'
 ext = ".txt"
 expfile = "export.json"
-path = "Modules/"
+path = "assets/Modules/" 
 title = ""
 author = ""
+
+testing = True
 
 
 class cd:
@@ -28,7 +32,13 @@ def git_init():
         # subprocess.call("ls")
         state=subprocess.call("git status")
         if state==0:
-            print("GIT Repository Exists")
+            print("GIT Repository Exists; remove repo ?")
+            if testing :
+                print("Removing as part of testing...")
+                os.system("rm -R .git")
+                subprocess.call("git init")
+            else:
+                print("Not removing...")
         else:
             subprocess.call("git init")
 

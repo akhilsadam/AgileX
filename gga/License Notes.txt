@@ -1,3 +1,0 @@
-This folder contains code from GitGraphAutomation by Ricci Gian Maria | https://github.com/alkampfergit | http://www.codewrecks.com
-Licensed by the MIT License included in this folder.
- 

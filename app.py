@@ -38,6 +38,7 @@ spfold = '.git'
 def getfiles():
     return [f.replace(git.ext,"") for f in listdir(git.path) if (not isfile(join(git.path, f)) and spfold not in f)]
 modules = []
+moduleID = 0
 #---
 app.index_string = '''
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ app.index_string = '''
             {%config%}
             {%scripts%}
             {%renderer%}
-            <a href="file:///cwdp/Modules/1/1.txt">Link 1</a>
+            <a href="/Modules/0/0.txt">Link 1</a>
         </footer>
     </body>
 </html>
@@ -155,13 +156,13 @@ modular_comp = \
                                             className="title",
                                             id={'type':'title','instance':moduleid},
                                         ),
-                                        dcc.Textarea(value='stringdata',id={'type':'graph-data','instance':moduleid}),
                                         html.Div(
                                             [
                                             ],
                                             id={'type':'graph-container','instance':moduleid},
+                                            className="graph-container",
                                         ), 
-                                        dcc.Textarea(id={'type':'graph-container-data','instance':moduleid}, value='', readOnly=True, style={'width': '100%','whiteSpace': 'pre-line'}),
+                                        dcc.Textarea(id={'type':'graph-container-data','instance':moduleid}, value='', readOnly=True, style={'display':'none'}),
                                     ],
                                     className="version one-third column",
                                 ),
@@ -208,8 +209,7 @@ def update_module(input_value):
     prevent_initial_call=True,
 )
 def save_module(n_clicks,value,id):
-    global modules
-    modulename = str(modules[int(id['instance'])])
+    modulename = str(int(id['instance']))
     with open(git.path+modulename+'/'+modulename+git.ext, "w") as f:
             f.write(value)
     return "/"
@@ -221,14 +221,17 @@ def save_module(n_clicks,value,id):
 )
 def new_module(n_clicks,value):
     if n_clicks > 0:
-        modulename = str(value)
+        givenname = str(value)
+        global moduleID
+        modulename = str(moduleID)
+        moduleID+=1
         ospath = git.path+modulename+'/'
         print(ospath)
         try:
             os.mkdir(ospath)
             git.git_submodule_init(ospath)
         except: print("path already exists ...")
-        with open(ospath+str(value)+git.ext, "a") as f:
+        with open(ospath+modulename+git.ext, "a") as f:
             f.write("")
         git.git_update(ospath,"new module "+modulename)
         # global modules
@@ -252,8 +255,7 @@ def new_module(n_clicks,value):
     State({'type':'module-commit','instance':MATCH}, 'id'),
 )
 def commit_log(n_clicks,id):
-    global modules
-    modulename = str(modules[int(id['instance'])])
+    modulename = str(int(id['instance']))
     os_path = git.path+modulename+'/'
     git.git_parse(os_path)
     file_path = os_path+git.expfile
