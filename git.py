@@ -4,7 +4,8 @@ from gga.parse import *
 
 sep = '-'
 ext = ".txt"
-path = "../Modules/"
+expfile = "export.json"
+path = "Modules/"
 title = ""
 author = ""
 
@@ -37,13 +38,21 @@ def git_submodule_init(ospath):
         subprocess.call("git checkout master")
 
 
-def git_update(msg):
-    subprocess.call("git add .")
-    subprocess.call("git commit -m \""+msg+"\"")
+def git_update(ospath,msg):
+    with cd(ospath):
+        subprocess.call("git add .")
+        subprocess.call("git commit -m \""+msg+"\"")
 
-def gitparse(ospath):
-    json_data = invoke_git_log(limit=0, directory=ospath)
-    return parse_json_output(json_data) 
+def git_parse(ospath):
+    with cd(ospath):
+        os.system("git2json > " + expfile)
+    return
+        # p = subprocess.Popen(['git2json'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        # output, err = p.communicate(b"input data that is passed to subprocess' stdin")
+        # rc = p.returncode
+        # out = output[:len(output)-5]
+    # json_data = invoke_git_log(limit=0, directory=ospath)
+    # return parse_json_output(json_data) 
 
 git_init()
 

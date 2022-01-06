@@ -7,13 +7,12 @@ import dash
 from dash import dcc
 from dash import html
 import dash_colorscales as dcs
-from dash.dependencies import Input, Output, State, MATCH, ALL
+from dash.dependencies import ClientsideFunction, Input, Output, State, MATCH, ALL
 from dash.exceptions import PreventUpdate
 from mni import create_mesh_data, default_colorscale
 import git
 
 suptitle = "PlasticPET Paper"
-
 
 app = dash.Dash(
     __name__,
@@ -32,17 +31,41 @@ GITHUB_LINK = os.environ.get(
     "https://github.com/akhilsadam/AgileX",
 )
 
+current_path = os.getcwd()
+
 spfold = '.git'
 
 def getfiles():
     return [f.replace(git.ext,"") for f in listdir(git.path) if (not isfile(join(git.path, f)) and spfold not in f)]
 modules = []
 #---
+app.index_string = '''
+<!DOCTYPE html>
+<html>
+    <head>
+        {%metas%}
+        <title>{%title%}</title>
+        {%favicon%}
+        {%css%}
+    </head>
+    <body>
+        {%app_entry%}
+        <footer>
+            {%config%}
+            {%scripts%}
+            {%renderer%}
+            <a href="file:///cwdp/Modules/1/1.txt">Link 1</a>
+        </footer>
+    </body>
+</html>
+'''.replace('cwdp',current_path)
+#---
 frontend = \
 """html.Div(
     [
         html.Form(
             [
+                html.Div([],className="bkgd"),
                 html.Div(
                     [
                         html.Div(
@@ -132,17 +155,13 @@ modular_comp = \
                                             className="title",
                                             id={'type':'title','instance':moduleid},
                                         ),
+                                        dcc.Textarea(value='stringdata',id={'type':'graph-data','instance':moduleid}),
                                         html.Div(
                                             [
                                             ],
                                             id={'type':'graph-container','instance':moduleid},
                                         ), 
-                                        html.Div(
-                                            [
-                                            ],
-                                            id={'type':'graph-text','instance':moduleid},
-                                        ), 
-                                        dcc.Textarea(id={'type':'graph-container-data','instance':moduleid}, value='testing_values...', readOnly=False, style={'width': '100%','whiteSpace': 'pre-line'}),                                               
+                                        dcc.Textarea(id={'type':'graph-container-data','instance':moduleid}, value='', readOnly=True, style={'width': '100%','whiteSpace': 'pre-line'}),
                                     ],
                                     className="version one-third column",
                                 ),
@@ -211,40 +230,36 @@ def new_module(n_clicks,value):
         except: print("path already exists ...")
         with open(ospath+str(value)+git.ext, "a") as f:
             f.write("")
-        git.git_update("new module "+modulename)
+        git.git_update(ospath,"new module "+modulename)
         # global modules
         # modules.append(value)
     return "/"
 
 #GITGRAPH
-app.clientside_callback(
-    """
-    function (value) {
-        alert(value);
-        var graphContainer = document.getElementById("graph-container");
-        var gitgraph = GitgraphJS.createGitgraph(graphContainer, {
-            "orientation": "vertical",
-            "template" : "metro"
-        });
-        gitgraph.import(value);
-        return 'via GitGraph.js';
-    }
-    """,
-    Output({'type':'graph-text','instance':MATCH}, 'children'),
-    [Input({'type':'graph-container-data','instance':MATCH}, 'value')],
-    prevent_initial_call=True,
-)
+# app.clientside_callback(
+#     ClientsideFunction(
+#         namespace='clientside',
+#         function_name='gitgraph_function'
+#     ),
+#     Output({'type':'graph-data','instance':MATCH}, 'value'),
+#     [Input({'type':'graph-container-data','instance':MATCH}, 'value')],
+#     State({'type':'graph-container','instance':MATCH}, 'id'),
+#     prevent_initial_call=True,
+# )
 
 @app.callback(Output({'type':'graph-container-data','instance':MATCH}, 'value'),
     Input({'type':'module-commit','instance':MATCH}, component_property='n_clicks'),
     State({'type':'module-commit','instance':MATCH}, 'id'),
 )
-def git_commit_and_log(n_clicks,id):
+def commit_log(n_clicks,id):
     global modules
     modulename = str(modules[int(id['instance'])])
-    ospath = git.path+modulename+'/'
-    return git.gitparse(ospath)
-
-
+    os_path = git.path+modulename+'/'
+    git.git_parse(os_path)
+    file_path = os_path+git.expfile
+    print(os.getcwd())
+    print(file_path)
+    return file_path
+    
 if __name__ == "__main__":
     app.run_server(debug=True)
