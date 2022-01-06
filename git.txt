@@ -1,4 +1,0 @@
-# make new git repo 
-
-
-# needs the following for cloning # git clone --recurse-submodules

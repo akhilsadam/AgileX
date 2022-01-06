@@ -1,7 +1,7 @@
 console.log("gitgraph_clientside.js");
 
 let expfile = "export.json";
-let path = "assets/Modules/" ;
+let path = "Modules/" ;
 
 setTimeout(() => 
 {
@@ -17,7 +17,7 @@ setTimeout(() =>
         const graphContainer = document.getElementById(idstring);
         console.log(graphContainer);
         const gitgraph = GitgraphJS.createGitgraph(graphContainer, {
-            "orientation": "vertical",
+            orientation: Orientation.VerticalReverse,
             "template" : "metro"
         });
         gitgraph.import(data);

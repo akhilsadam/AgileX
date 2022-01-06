@@ -6,7 +6,7 @@ import subprocess
 sep = '-'
 ext = ".txt"
 expfile = "export.json"
-path = "assets/Modules/" 
+path = "Modules/" 
 title = ""
 author = ""
 

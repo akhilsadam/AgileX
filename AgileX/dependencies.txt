@@ -1,0 +1,3 @@
+# all the stuff in environment.yml, and 
+npm
+https://github.com/fabien0102/git2json #do an npm install
