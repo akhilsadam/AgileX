@@ -4,63 +4,762 @@
       "HEAD",
       "master"
     ],
-    "hash": "20b3dbd46ef31431e8170597a299f2af4107eb63",
-    "hashAbbrev": "20b3dbd",
-    "tree": "6955e80391789ef7ae36c262460dcf6ac15c66f3",
-    "treeAbbrev": "6955e80",
+    "hash": "72c01d6f9ba4dcb17409325503aa6a1c2f67a832",
+    "hashAbbrev": "72c01d6",
+    "tree": "7f8cde96a1be4b1a632d340b4dcc3e2ab836e0d3",
+    "treeAbbrev": "7f8cde9",
     "parents": [
-      "3393dcc4979490e86ab5a3c593254c00aa4733d0"
+      "04e95bf5a0abfb0323547514e09f97d3a48f97a8"
     ],
     "parentsAbbrev": [
-      "3393dcc"
+      "04e95bf"
     ],
     "author": {
       "name": "Akhil Sadam",
       "email": "sadam.akhil@gmail.com",
-      "timestamp": 1642028703000
+      "timestamp": 1642028745000
     },
     "committer": {
       "name": "Akhil Sadam",
       "email": "sadam.akhil@gmail.com",
-      "timestamp": 1642028703000
+      "timestamp": 1642028745000
     },
-    "subject": "empty commit",
-    "body": "",
-    "notes": "",
-    "stats": [
-      {
-        "additions": 34,
-        "deletions": 0,
-        "file": "1/export.json"
-      }
-    ]
-  },
-  {
-    "refs": [],
-    "hash": "3393dcc4979490e86ab5a3c593254c00aa4733d0",
-    "hashAbbrev": "3393dcc",
-    "tree": "24c6d66ee8b34a452fd3aa5942c93f5212762b85",
-    "treeAbbrev": "24c6d66",
-    "parents": [],
-    "parentsAbbrev": [],
-    "author": {
-      "name": "Akhil Sadam",
-      "email": "sadam.akhil@gmail.com",
-      "timestamp": 1642028691000
-    },
-    "committer": {
-      "name": "Akhil Sadam",
-      "email": "sadam.akhil@gmail.com",
-      "timestamp": 1642028691000
-    },
-    "subject": "empty commit",
+    "subject": "new module 1",
     "body": "",
     "notes": "",
     "stats": [
       {
         "additions": 0,
         "deletions": 0,
-        "file": "1/1.txt"
+        "file": "AgileX/static/Modules/1/1.txt"
+      },
+      {
+        "additions": 67,
+        "deletions": 0,
+        "file": "AgileX/static/Modules/1/export.json"
+      }
+    ]
+  },
+  {
+    "refs": [
+      "origin/master"
+    ],
+    "hash": "04e95bf5a0abfb0323547514e09f97d3a48f97a8",
+    "hashAbbrev": "04e95bf",
+    "tree": "74cc4f4668e1507a31eb8a54b2fc74e1530c0c87",
+    "treeAbbrev": "74cc4f4",
+    "parents": [
+      "66172327d1f1558ada825ec094836b312cc1602b"
+    ],
+    "parentsAbbrev": [
+      "6617232"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641513982000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641513982000
+    },
+    "subject": "style",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 5,
+        "deletions": 0,
+        "file": "AgileX/static/dist/css/styles.css"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "AgileX/static/img/img0.jpg"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "AgileX/static/img/img1.jpg"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "66172327d1f1558ada825ec094836b312cc1602b",
+    "hashAbbrev": "6617232",
+    "tree": "4110959a8573dda04b2eb1c886831ec29bfd2968",
+    "treeAbbrev": "4110959",
+    "parents": [
+      "6ff70fa2a03819f7a2fa284be643bfaea0d25d4f"
+    ],
+    "parentsAbbrev": [
+      "6ff70fa"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641494546000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641494546000
+    },
+    "subject": "refactor to Flask",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 2,
+        "deletions": 1,
+        "file": ".gitignore"
+      },
+      {
+        "additions": 19,
+        "deletions": 0,
+        "file": "AgileX/__init__.py"
+      },
+      {
+        "additions": 23,
+        "deletions": 0,
+        "file": "AgileX/assets.py"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "{assets => AgileX/assets}/default.css"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "{assets => AgileX/assets}/default.js"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "{assets => AgileX/assets}/gitgraph.umd.min.js"
+      },
+      {
+        "additions": 2,
+        "deletions": 2,
+        "file": "{assets => AgileX/assets}/gitgraph_clientside.mjs"
+      },
+      {
+        "additions": 2,
+        "deletions": 2,
+        "file": "{assets => AgileX/assets}/style.css"
+      },
+      {
+        "additions": 272,
+        "deletions": 0,
+        "file": "AgileX/dashapp.py"
+      },
+      {
+        "additions": 3,
+        "deletions": 0,
+        "file": "AgileX/dependencies.txt"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "environment.yml => AgileX/environment.yml"
+      },
+      {
+        "additions": 1,
+        "deletions": 1,
+        "file": "git.py => AgileX/git.py"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "mni.py => AgileX/mni.py"
+      },
+      {
+        "additions": 15,
+        "deletions": 0,
+        "file": "AgileX/routes.py"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "{assets => AgileX/static/img}/img.jpg"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "{assets => AgileX/static/img}/logo.png"
+      },
+      {
+        "additions": 14,
+        "deletions": 0,
+        "file": "AgileX/templates/analytics.jinja2"
+      },
+      {
+        "additions": 13,
+        "deletions": 0,
+        "file": "AgileX/templates/index.jinja2"
+      },
+      {
+        "additions": 45,
+        "deletions": 0,
+        "file": "AgileX/templates/layout.jinja2"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "__init__.py"
+      },
+      {
+        "additions": 0,
+        "deletions": 270,
+        "file": "app.py"
+      },
+      {
+        "additions": 0,
+        "deletions": 42,
+        "file": "binder.ipynb"
+      },
+      {
+        "additions": 26,
+        "deletions": 0,
+        "file": "config.py"
+      },
+      {
+        "additions": 0,
+        "deletions": 4,
+        "file": "git.txt"
+      },
+      {
+        "additions": 10,
+        "deletions": 0,
+        "file": "wsgi.py"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "6ff70fa2a03819f7a2fa284be643bfaea0d25d4f",
+    "hashAbbrev": "6ff70fa",
+    "tree": "fb2375eeaee2a42c1ff0a164f147ea7652fbcb2f",
+    "treeAbbrev": "fb2375e",
+    "parents": [
+      "924f4b2628fbb8a4ed7177a854c9fee3a1012827"
+    ],
+    "parentsAbbrev": [
+      "924f4b2"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641487849000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641487849000
+    },
+    "subject": "testing binder",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 2,
+        "deletions": 1,
+        "file": ".gitignore"
+      },
+      {
+        "additions": 5,
+        "deletions": 2,
+        "file": "app.py"
+      },
+      {
+        "additions": 1,
+        "deletions": 1,
+        "file": "assets/gitgraph_clientside.mjs"
+      },
+      {
+        "additions": 16,
+        "deletions": 4,
+        "file": "assets/style.css"
+      },
+      {
+        "additions": 42,
+        "deletions": 0,
+        "file": "binder.ipynb"
+      },
+      {
+        "additions": 13,
+        "deletions": 0,
+        "file": "environment.yml"
+      },
+      {
+        "additions": 2,
+        "deletions": 4,
+        "file": "git.py"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "924f4b2628fbb8a4ed7177a854c9fee3a1012827",
+    "hashAbbrev": "924f4b2",
+    "tree": "007250fe8df45dadcc3d5efc0e27fd934ce8a79c",
+    "treeAbbrev": "007250f",
+    "parents": [
+      "d4e644b13fab4c78d66adb25d1d333b8c8a1b114"
+    ],
+    "parentsAbbrev": [
+      "d4e644b"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641448867000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641448867000
+    },
+    "subject": "gitgraph 0.1",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 1,
+        "deletions": 1,
+        "file": ".gitignore"
+      },
+      {
+        "additions": 0,
+        "deletions": 1,
+        "file": "LICENSE"
+      },
+      {
+        "additions": 11,
+        "deletions": 9,
+        "file": "app.py"
+      },
+      {
+        "additions": 32,
+        "deletions": 23,
+        "file": "assets/gitgraph_clientside.mjs"
+      },
+      {
+        "additions": 0,
+        "deletions": 21,
+        "file": "gga/LICENSE"
+      },
+      {
+        "additions": 0,
+        "deletions": 3,
+        "file": "gga/License Notes.txt"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "gga/__init__.py"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "gga/__pycache__/__init__.cpython-38.pyc"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "gga/__pycache__/parse.cpython-38.pyc"
+      },
+      {
+        "additions": 0,
+        "deletions": 131,
+        "file": "gga/parse.py"
+      },
+      {
+        "additions": 13,
+        "deletions": 3,
+        "file": "git.py"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "d4e644b13fab4c78d66adb25d1d333b8c8a1b114",
+    "hashAbbrev": "d4e644b",
+    "tree": "948a6383a63802c0e5a14a40ac6a4e5452460081",
+    "treeAbbrev": "948a638",
+    "parents": [
+      "8f304de9e7f8ddcdfa310e1e7b8c9369acc69323"
+    ],
+    "parentsAbbrev": [
+      "8f304de"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641444154000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641444154000
+    },
+    "subject": "restructuring again",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 2,
+        "deletions": 0,
+        "file": ".gitignore"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "__pycache__/git.cpython-38.pyc"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "__pycache__/mni.cpython-38.pyc"
+      },
+      {
+        "additions": 46,
+        "deletions": 31,
+        "file": "app.py"
+      },
+      {
+        "additions": 39,
+        "deletions": 0,
+        "file": "assets/gitgraph_clientside.mjs"
+      },
+      {
+        "additions": 16,
+        "deletions": 0,
+        "file": "assets/style.css"
+      },
+      {
+        "additions": 16,
+        "deletions": 7,
+        "file": "git.py"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "8f304de9e7f8ddcdfa310e1e7b8c9369acc69323",
+    "hashAbbrev": "8f304de",
+    "tree": "5371fe6226897652e691780f81046525e56e13f3",
+    "treeAbbrev": "5371fe6",
+    "parents": [
+      "1b877b82aeb41a11bced43f3d11085309f02aa59"
+    ],
+    "parentsAbbrev": [
+      "1b877b8"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641358994000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641358994000
+    },
+    "subject": "new module 1",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 7,
+        "deletions": 2,
+        "file": "app.py"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "1b877b82aeb41a11bced43f3d11085309f02aa59",
+    "hashAbbrev": "1b877b8",
+    "tree": "c11de4d0cfb6e0193ef7d33e8be1a26d9f7b21d3",
+    "treeAbbrev": "c11de4d",
+    "parents": [
+      "6c50c2e43407fc0aab70c86291b5903832372ad1"
+    ],
+    "parentsAbbrev": [
+      "6c50c2e"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641357996000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641357996000
+    },
+    "subject": "new module 1",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 22,
+        "deletions": 0,
+        "file": "LICENSE"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "__init__.py"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "__pycache__/git.cpython-38.pyc"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "__pycache__/mni.cpython-38.pyc"
+      },
+      {
+        "additions": 49,
+        "deletions": 10,
+        "file": "app.py"
+      },
+      {
+        "additions": 1,
+        "deletions": 0,
+        "file": "assets/gitgraph.umd.min.js"
+      },
+      {
+        "additions": 21,
+        "deletions": 0,
+        "file": "gga/LICENSE"
+      },
+      {
+        "additions": 3,
+        "deletions": 0,
+        "file": "gga/License Notes.txt"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "gga/__init__.py"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "gga/__pycache__/__init__.cpython-38.pyc"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "gga/__pycache__/parse.cpython-38.pyc"
+      },
+      {
+        "additions": 131,
+        "deletions": 0,
+        "file": "gga/parse.py"
+      },
+      {
+        "additions": 25,
+        "deletions": 2,
+        "file": "git.py"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "6c50c2e43407fc0aab70c86291b5903832372ad1",
+    "hashAbbrev": "6c50c2e",
+    "tree": "c1830f29bc7382c75c6551f1816c3260c4d45769",
+    "treeAbbrev": "c1830f2",
+    "parents": [
+      "6b9da9d34d8a86f5228a900545cf7f995099811c"
+    ],
+    "parentsAbbrev": [
+      "6b9da9d"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641332477000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641332477000
+    },
+    "subject": "refactor dir",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "AgileX/git.txt"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "AgileX/app.py => app.py"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "{AgileX/assets => assets}/default.css"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "{AgileX/assets => assets}/default.js"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "{AgileX/assets => assets}/img.jpg"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "{AgileX/assets => assets}/logo.png"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "{AgileX/assets => assets}/style.css"
+      },
+      {
+        "additions": 1,
+        "deletions": 1,
+        "file": "AgileX/git.py => git.py"
+      },
+      {
+        "additions": 4,
+        "deletions": 0,
+        "file": "git.txt"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "AgileX/mni.py => mni.py"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "6b9da9d34d8a86f5228a900545cf7f995099811c",
+    "hashAbbrev": "6b9da9d",
+    "tree": "16336006f6b14e45b338de295275c0666244219e",
+    "treeAbbrev": "1633600",
+    "parents": [
+      "ff72687d78cb8af3fd59fd8d382b8c4f5865403f"
+    ],
+    "parentsAbbrev": [
+      "ff72687"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641331261000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641331261000
+    },
+    "subject": "pre-git update",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 129,
+        "deletions": 47,
+        "file": "AgileX/app.py"
+      },
+      {
+        "additions": 3,
+        "deletions": 2,
+        "file": "AgileX/assets/default.css"
+      },
+      {
+        "additions": 11,
+        "deletions": 0,
+        "file": "AgileX/assets/default.js"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "AgileX/assets/logo.png"
+      },
+      {
+        "additions": 128,
+        "deletions": 9,
+        "file": "AgileX/assets/style.css"
+      },
+      {
+        "additions": 28,
+        "deletions": 0,
+        "file": "AgileX/git.py"
+      },
+      {
+        "additions": 0,
+        "deletions": 0,
+        "file": "AgileX/git.txt"
+      }
+    ]
+  },
+  {
+    "refs": [],
+    "hash": "ff72687d78cb8af3fd59fd8d382b8c4f5865403f",
+    "hashAbbrev": "ff72687",
+    "tree": "7e3fe0dc37aa0c4310fa80d53540747aaeb54873",
+    "treeAbbrev": "7e3fe0d",
+    "parents": [],
+    "parentsAbbrev": [],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641271818000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1641271818000
+    },
+    "subject": "modules",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 124,
+        "deletions": 0,
+        "file": "AgileX/app.py"
+      },
+      {
+        "additions": 414,
+        "deletions": 0,
+        "file": "AgileX/assets/default.css"
+      },
+      {
+        "additions": null,
+        "deletions": null,
+        "file": "AgileX/assets/img.jpg"
+      },
+      {
+        "additions": 79,
+        "deletions": 0,
+        "file": "AgileX/assets/style.css"
+      },
+      {
+        "additions": 152,
+        "deletions": 0,
+        "file": "AgileX/mni.py"
       }
     ]
   }
