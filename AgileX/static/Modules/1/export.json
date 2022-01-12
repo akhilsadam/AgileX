@@ -4,6 +4,39 @@
       "HEAD",
       "master"
     ],
+    "hash": "ba20a017279d6974c0986132f17458f81671012c",
+    "hashAbbrev": "ba20a01",
+    "tree": "d66b195641a018236efa6de4b5e3a07c7b2bf72d",
+    "treeAbbrev": "d66b195",
+    "parents": [
+      "72c01d6f9ba4dcb17409325503aa6a1c2f67a832"
+    ],
+    "parentsAbbrev": [
+      "72c01d6"
+    ],
+    "author": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1642028757000
+    },
+    "committer": {
+      "name": "Akhil Sadam",
+      "email": "sadam.akhil@gmail.com",
+      "timestamp": 1642028757000
+    },
+    "subject": "empty commit",
+    "body": "",
+    "notes": "",
+    "stats": [
+      {
+        "additions": 719,
+        "deletions": 20,
+        "file": "AgileX/static/Modules/1/export.json"
+      }
+    ]
+  },
+  {
+    "refs": [],
     "hash": "72c01d6f9ba4dcb17409325503aa6a1c2f67a832",
     "hashAbbrev": "72c01d6",
     "tree": "7f8cde96a1be4b1a632d340b4dcc3e2ab836e0d3",
