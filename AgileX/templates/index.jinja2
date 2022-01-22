@@ -2,12 +2,14 @@
 
 {% block content %}
 <div class="card">
-  <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo" />
   <h1 class="site-title">{{ title }}</h1>
-  <p class="subtitle">Demo for embedding Plotly Dash within Flask Apps (View source on <a href="https://github.com/toddbirchard/plotlydash-flask-tutorial">Github</a>).</p>
+  <p class="subtitle">A Demo for <a href="https://github.com/akhilsadam/AgileX/tree/master">AgileX Modular Documentation</a></p>
   <a href="/dashapp/" class="dash-link">
-    <span>Embdedded Plotly Dash</span>
+    <span>workbench</span>
     <i class="fas fa-arrow-right"></i>
   </a>
+</div>
+<div class="card">
+  <embed src="/static/Modules/currentTex.pdf#toolbar=0&navpanes=0&scrollbar=0" width=100% style="border: none;height:80vh;"></embed>
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 """Initialize Flask app."""
 from flask import Flask
-from flask_assets import Environment
+from flask_assets import Environment, Bundle
 
 
 def init_app():

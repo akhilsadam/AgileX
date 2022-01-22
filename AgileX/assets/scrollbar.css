@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    margin-top: 0vh !important;
+    background-color: var(--nandemonai);
+    background-blend-mode: overlay;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--kurobeni) !important;
+    background-blend-mode: difference !important;
+    background-size: cover !important;
+    background-attachment: absolute !important;
+    background-position: center !important;
+}

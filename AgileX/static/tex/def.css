@@ -1,0 +1,5 @@
+:root {
+--aijiro: rgba(235, 246, 247, 1);
+color: var(--aijiro) !important;
+}
+

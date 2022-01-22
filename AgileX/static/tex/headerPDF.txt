@@ -1,0 +1,9 @@
+\documentclass[12pt]{iopart}
+\newcommand{\gguide}{{\it Preparing graphics for IOP Publishing journals}}
+%Uncomment next line if AMS fonts required
+%\usepackage{iopams}  
+\usepackage{graphicx}
+\usepackage{parskip}
+%\usepackage{amsmath}
+\bibliographystyle{iopart-num}
+\begin{document}

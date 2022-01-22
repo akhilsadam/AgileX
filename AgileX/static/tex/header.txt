@@ -1,0 +1,4 @@
+\RequirePackage[2020-02-02]{latexrelease}
+\RequirePackage{graphicx}
+\RequirePackage{parskip}
+\RequirePackage{setstack}

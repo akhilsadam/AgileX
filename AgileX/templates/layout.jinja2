@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head style="margin: 0; height: 100%; overflow: hidden">
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>{{ title }}</title>
@@ -23,10 +23,8 @@
   <meta property="og:image:height" content="523"/>
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/styles.css') }}" />
   <link rel="stylesheet" href="https://use.typekit.net/uqq2lcv.css">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='dist/img/favicon.png') }}" type="image/x-icon" />
   <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -35,7 +33,7 @@
   />
 </head>
 
-<body class="{{template}}">
+<body class="{{template}}" style="margin: 0; height: 100%; overflow: hidden">
   <div class="container">
 	  {% block content %}{% endblock %}
   </div>

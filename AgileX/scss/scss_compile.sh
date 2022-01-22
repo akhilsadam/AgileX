@@ -1,0 +1,1 @@
+sass custom.scss ../assets/custom.css
