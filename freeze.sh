@@ -1,0 +1,1 @@
+"C:\Program Files\Python3.8\python.exe" freeze.py

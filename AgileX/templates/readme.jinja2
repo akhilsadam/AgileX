@@ -1,0 +1,62 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="card">
+  <h1 class="site-title">{{ title }}</h1>
+  <p class="subtitle">A Demo for <a href="https://github.com/akhilsadam/AgileX/tree/master">AgileX Modular Documentation</a></p>
+  <a href="/dashapp/" class="dash-link">
+    <span>workbench</span>
+    <i class="fas fa-arrow-right"></i>
+  </a>
+  <a href="/" class="dash-link">
+    <span>home</span>
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</div>
+<div class="card colz">{{ general }}</div>
+<div class="block">
+  <div class="left-align colz">
+    <h2 class="site-title">{{ title2 }}</h2>
+    <ul>
+      The complete document can be viewed on the home page.<br>
+      <h4>For the Workbench:</h4>
+      <li>Open the workbench to see individual sections.</li>
+      <li>For each module, the left section contains a HTML preview version and code hidden in a dropdown. The right section illustrates the current Git status of the module.</li>
+      <li>Clicking on the Git graph will reload the left section with the clicked-upon commit/branch. The commit currently being shown is listed in the rightmost header, and will show HEAD if you are currently viewing the head.</li>
+      <li>Commit hashes and messages are shown for ease of reference</li>
+      <li>The input field containing one of the following: ["TODO","WIP","QA","DONE"] represents the status of that module. If it is set to 'QA', please take note, that means quality assurance and requires a review from you!</li>
+      <br>
+      <li>No edits will be saved if this is a static site deployment, which is probably the case if you are are reader.</li>
+      <li>Finally, there is no method yet for saving comments; please email / otherwise send them directly to the writers/authors/students.</li>
+    </ul>
+  </div>
+  <div class="left-align colz">
+    <h2 class="site-title">{{ title3 }}</h2>
+    <ul>
+      If you have not read the above reader documentation, please do so FIRST!<br>
+      <h4>Installation & Quickstart:</h4>
+      <li>Clone/(download and unzip) the repository from Github to any folder.</li>
+      <li>Install all dependencies --- look at dependencies.txt</li>
+      <li>In AgileX/static/Modules, open a terminal and setup your git repository for your documentation/paper</li>
+      <li>Run python wsgi.py from the original folder</li><br>
+      There are couple important things to note: <br><br>
+      <li>AgileX/static/Modules contains the data for every module. This ought to be periodically backed up (preferably via a git push). Any images/files used in a module would go here.</li>
+      <li>AgileX/static/ModuleWT contains git worktrees for the intermediate commits, so they can be viewed as a static site.</li>
+      <li>AgileX/static/tex contains LaTeX headers/footers and other include files (put yours here if needed).</li>
+      <li>AgileX/static/img contains background images, which can be changed if you so desire.</li>
+      <h4>For the Workbench:</h4>
+      There are couple other important things/idiosyncrasies to note: <br><br>
+      <li>When typing code into the editor, make sure to apply a 'keyup' event prior to saving/registering by any of the buttons. That is, when copy-pasting a code, add and remove a space, so that the change can be enregistered.</li>
+      <li>Always SAVE TO HEAD before anything else, to save your changes to disk. Note that this edits the files currently selected by HEAD, so do not try to edit past commit history. More complicated git stuff such as rebase should be done manually with a terminal.</li>
+      <li>We recommend descriptive, short commit messages and branchnames, as they will appear on the graph to the right.</li>
+      <li>Follow proper Git protocol! For example, commit or stash changes prior to branching or checking out another branch.</li>
+      <li>For the input field, to change between available statuses, type an additional space/character into the input field. Backspace/Delete will not work here, unless you wish to set the TODO status.</li>
+      <br>
+      <li>No error reporting functionality has been built yet, so please refer to the Python server/terminal for any error messages!</li>
+      <h4>Deployment:</h4>
+      <li>In AgileX, there is a python file called freeze.py. Run that via terminal (may need admin permissions), and you should populate the AgileX/build directory containing the generated static files.
+      You may equivalently use the bash script (after editing in your python version and location).</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
