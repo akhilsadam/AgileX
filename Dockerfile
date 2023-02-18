@@ -7,6 +7,7 @@ WORKDIR agilex-docker
 COPY requirements.txt requirements.txt
 
 RUN pip3 install -r requirements.txt
+RUN sudo apt install git-all
 RUN npm install https://github.com/fabien0102/git2json
 
 COPY . .
