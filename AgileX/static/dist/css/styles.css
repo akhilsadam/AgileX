@@ -139,6 +139,22 @@ header .nav-wrapper a {
     font-size: .9em
 }
 
+.left-align {
+    text-align: left;
+}
+
+.colz {
+    width: calc(50% - 2em);
+    margin-left: 25%;
+    padding: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.fl {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 body,
 html {
     height: 100%!important;

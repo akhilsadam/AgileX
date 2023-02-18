@@ -1,6 +1,11 @@
 ::-webkit-scrollbar {
+    height: 10px;
     width: 10px;
+    mix-blend-mode: difference;
+    background-color: var(--nandemonai);
 }
+
+::-webkit-scrollbar:vertical {}
 
 ::-webkit-scrollbar-track {
     margin-top: 0vh !important;

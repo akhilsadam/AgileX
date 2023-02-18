@@ -17,7 +17,16 @@ def patch_file(file_path: str, content: bytes, extra: dict = None) -> bytes:
         var patched_jsons_content={{
         {','.join(["'/" + k + "':" + v.decode("utf8") + "" for k, v in extra.items()])}
         }};
-        '''
+        '''.replace(
+            "\\\"",
+            "\""
+        ).replace(
+            "\\n",
+            ""
+        ).replace(
+            "/static",
+            "/../static"
+        )
         patched_content = index_html_content.replace(
             '<footer>',
             f'''
@@ -147,8 +156,8 @@ def make_static(base_url, target_dir='target'):
         resource_bytes = requests.get(resource_url_full).content
         patched_bytes = patch_file(resource_url, resource_bytes)
         write_file(resource_url, patched_bytes, target_dir)
-    with git.cd("target"):
-        os.system("mkdir dashapp")
-        os.system("mv * dashapp/")
-        os.system("mv assets/* dashapp/assets/")
+    # with git.cd("target"):
+    #     os.system("mkdir dashapp")
+    #     os.system("mv * dashapp/")
+    #     os.system("mv assets/* dashapp/assets/")
 

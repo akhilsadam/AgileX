@@ -5,6 +5,7 @@
     --mashiro: rgb(255, 255, 255);
     --zoge-iro: rgb(255, 255, 240);
     --hakushi: rgb(249, 251, 255);
+    --hakushi-alph: rgb(249, 251, 255, 0.5);
     --mizu-iro: rgb(134, 171, 165);
     --gunjo-iro: rgb(93, 140, 174);
     --sora-iro: rgb(77, 143, 172);
@@ -33,15 +34,17 @@
     --shiro-kotoba: var(--aijiro);
     --kuro-kotoba: var(--kurobeni);
     /* other */
-    --boxshade: 1px 5px 1px var(--nandemonai) inset;
-    --smallblur: blur(15px) contrast(1.1) brightness(0.5);
-    --vblur: blur(10px) brightness(0.8);
+    --boxshade: 1px 5px 1px transparent inset;
+    --smallblur: blur(20px) contrast(1.05) brightness(0.4);
+    --vblur: blur(12px) brightness(0.9);
     --bkg: url("/static/img/img0.jpg");
     --imgfilt: none;
+    --imgtransf: none;
 }
 
 main {
     scrollbar-gutter: stable;
+    overflow-y: scroll;
 }
 
 body {
@@ -61,8 +64,38 @@ body {
     top: 0;
     height: 5px;
     width: 100%;
-    background: var(--nandemonai);
+    background: transparent;
 }
+
+.avance-recule {
+    position: sticky;
+    bottom: 20px;
+    margin-left: auto;
+    margin-right: 20px;
+    right: 0px;
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    background: transparent;
+    -webkit-mask-image: url("/static/svg/circle.svg");
+    mask-image: url("/static/svg/circle.svg");
+    -webkit-mask-size: 3em 3em;
+    mask-size: 3em 3em;
+}
+
+
+/* .avance-recule-circle {
+    position: absolute;
+    height: 2em;
+    width: 2em;
+    margin-top: 0.25em;
+    margin-left: 0.25em;
+    border-radius: 50%;
+    background: var(--shiro);
+    / background: url("/static/svg/circle.svg");
+    background-size: cover;
+    z-index: 2;
+} */
 
 a:hover {
     opacity: 0.5;
@@ -94,7 +127,7 @@ a:hover {
 
 .module a {
     padding: 10px 15px;
-    background: var(--nandemonai);
+    background: transparent;
     color: var(--shiro-kotoba);
     text-decoration: none;
     border-radius: 0.35rem;
@@ -104,7 +137,7 @@ a:hover {
 }
 
 .main {
-    background: var(--nandemonai);
+    background: transparent;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -125,6 +158,7 @@ a:hover {
     background-size: cover;
     background-blend-mode: hard-light;
     filter: var(--imgfilt);
+    transform: var(--imgtransf);
     /* filter: hue-rotate(0deg) saturate(1) contrast(1) brightness(1)  invert(0);
   perspective: 800px;
   perspective-origin: 0%;
@@ -153,16 +187,43 @@ a:hover {
 
 .version {
     box-shadow: var(--boxshade);
-    background-color: var(--shiro);
-    backdrop-filter: var(--vblur);
+    background-color: transparent;
+    /* background-color: var(--shiro) transparent; */
+    /* background-blend-mode: overlay; */
+    backdrop-filter: var(--vblur) invert(1);
     margin: 0px 0px 0px 0px;
     border-radius: 5px 5px;
-    mix-blend-mode: difference;
+    /* mix-blend-mode: difference; */
     color: var(--kuro);
     max-height: 20em;
     overflow-x: auto;
     overflow-y: auto;
+    scrollbar-gutter: stable;
 }
+
+
+/* .mixblende {
+    background: url(/static/img/img.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(0px);
+    mix-blend-mode: difference;
+} */
+
+
+/* .version::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: var(--shiro);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 50%;
+} */
 
 
 /* .version::before {
@@ -183,9 +244,17 @@ a:hover {
     background-color: transparent;
     font-variant: uppercase;
     position: sticky;
-    top: 5px;
+    top: -5px;
+    padding-top: 5px;
     text-align: right;
+    float: right;
     padding-right: 10px;
+    right: 0px;
+    z-index: 5;
+}
+
+.state {
+    right: 0px;
 }
 
 .checkout {
@@ -211,7 +280,8 @@ a:hover {
 
 #module-new-submit,
 #module-new,
-#module-pdf {
+#module-pdf,
+#module-ss {
     color: var(--shiro);
     border: none;
     border-radius: 0% 0%;
@@ -225,6 +295,9 @@ a:hover {
 }
 
 .module-commit,
+.module-branch,
+.module-check,
+.module-stash,
 .module-save {
     color: var(--shiro);
     font-family: var(--kotoba) !important;
@@ -257,9 +330,9 @@ a:hover {
 }
 
 .Select-control {
-    background-color: var(--nandemonai);
+    background-color: transparent;
     border: none;
-    color: var(--nandemonai);
+    color: transparent;
 }
 
 
@@ -281,7 +354,7 @@ a:hover {
 }
 
 .logo:hover {
-    background-color: var(--nandemonai);
+    background-color: transparent;
     -webkit-text-stroke: 0.5px var(--ao);
     mix-blend-mode: overlay;
     color: var(--shiro);
@@ -290,7 +363,7 @@ a:hover {
 }
 
 textarea {
-    background-color: var(--nandemonai);
+    background-color: transparent;
     border: none;
     color: var(--shiro);
 }
@@ -352,12 +425,14 @@ textarea {
 
 .CodeMirror,
 .CodeMirror-gutters {
-    background: var(--nandemonai) !important;
+    background: transparent !important;
 }
 
 .wrap {
     background: inherit;
     backdrop-filter: invert(0);
+    min-height: 0px;
+    max-height: 100vh;
 }
 
 
@@ -375,21 +450,20 @@ backdrop-filter: invert(0);
 */
 
 .embeds {
-    background-color: var(--nandemonai);
+    background-color: transparent;
     mix-blend-mode: hard-light;
     color: var(--shiro-kotoba);
+    border: hidden;
+    min-height: 0px;
+    max-height: 100vh;
 }
 
+div.wrap>iframe {
+    resize: none;
+}
 
-/* svg {
-    max-width: 20em;
-    filter: contrast(1) brightness(1);
-} */
-
-
-/* .graph-container {
-    filter: invert(1);
-    text-shadow: 0px 0px 1px black;
-} */
+svg {
+    z-index: -5;
+}
 
 @media all and (max-width: 768px) {}

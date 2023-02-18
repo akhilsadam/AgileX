@@ -9,14 +9,16 @@ from dash import html
 import dash_colorscales as dcs
 from dash.dependencies import ClientsideFunction, Input, Output, State, MATCH, ALL
 from dash.exceptions import PreventUpdate
-from dash_extensions import Keyboard
+from dash.html import Kbd as Keyboard
 import dash_dangerously_set_inner_html
 # from mni import create_mesh_data, default_colorscale
 import time
 import visdcc
 from . import git
+from .dashsave import *
 
-suptitle = "PlasticPET Paper"
+suptitle = "workbench"
+port = 9050
 
 GITHUB_LINK = os.environ.get(
     "GITHUB_LINK",
@@ -24,6 +26,7 @@ GITHUB_LINK = os.environ.get(
 )
 
 current_path = os.getcwd()
+reg_prefix = '/'
 dash_prefix = '/dashapp/'
 spfold = '.git'
 
@@ -98,13 +101,15 @@ def init_dashboard(server):
                                         html.Div(dcc.Input(id='module-new-submit', type='text', value='0')),
                                         html.Button('Add Module', id='module-new', type="button", n_clicks=0, style={'display': 'block'}),
                                         html.Button('PDF Export', id='module-pdf', type="button",n_clicks=0, style={'display': 'block'}),
+                                        html.Button('Static Site Export', id='module-ss', type="button",n_clicks=0, style={'display': 'block'}),
+                                        html.Span('', id='saved'),
                                     ],
                                     className="module-add",
                                     style={'display': 'flex','flex-direction': 'row','padding-left':'2em'},
                                 ),
                                 dcc.Store(id="annotation_storage"),
                                 dcc.Location(id='url', refresh=True),
-                                dcc.Location(id='url4', refresh=False),
+                                dcc.Location(id='url4', refresh=True),
                         ],
                         className="main",
                     ),
@@ -131,27 +136,30 @@ def init_dashboard(server):
                                                         [
                                                             Keyboard(id={'type':'module-input-key','instance':moduleid}),
                                                             dash_dangerously_set_inner_html.DangerouslySetInnerHTML('''
-<code-fence lang="r" switcher="false" heading="R Markdown moduleid" style="word-wrap: break-word; word-break: break-word; width:100%;overflow-x:wrap;">
-    <textarea vue-slot="code" id="{'type':'module-input-code-area','instance':moduleid}" class="module-input-code-area" style="word-wrap: break-word; word-break: break-word;">moduletext</textarea>
+<code-fence lang='r' switcher='false' heading='LaTeX moduleid' style='word-wrap: break-word; word-break: break-word; width:100%;overflow-x:wrap;'>
+    <textarea vue-slot='code' id='{'type':'module-input-code-area','instance':moduleid}' class='module-input-code-area' style='word-wrap: break-word; word-break: break-word;'>moduletext</textarea>
 </code-fence>
                                                             '''),
-                                                            #dcc.Textarea(id={'type':'module-input-code','instance':moduleid},className="module-input-code", value='', readOnly=True, style={'width': '100%'}),
-                                                            #dcc.Input(id={'type':'module-input-code','instance':moduleid},className="module-input-code", value='', type="text", readOnly=False, style={'width': '100%'}),
-                                                            # <input id="{"instance":moduleid,"type":"module-input-code"}" class="module-input-code"  value=''  type="text" readOnly=False style="width: 100%;"></input>
-                                                            html.Data(id={'type':'module-input-code','instance':moduleid},className="module-input-code", value='', contentEditable=False, style={'width': '100%','display':'none'}),
-                                                            # visdcc.Run_js(id = 'javascript', run = "$('#datatable').DataTable()"),
+                                                            #dcc.Textarea(id={'type':'module-input-code','instance':moduleid},className='module-input-code', value='', readOnly=True, style={'width': '100%'}),
+                                                            #dcc.Input(id={'type':'module-input-code','instance':moduleid},className='module-input-code', value='', type='text', readOnly=False, style={'width': '100%'}),
+                                                            # <input id='{'instance':moduleid,'type':'module-input-code'}' class='module-input-code'  value=''  type='text' readOnly=False style='width: 100%;'></input>
+                                                            html.Data(id={'type':'module-input-code','instance':moduleid},className='module-input-code', value='''moduletext''', contentEditable=False, style={'width': '100%','display':'none'}),
+                                                            visdcc.Run_js(id={'type':'module-input-refresh','instance':moduleid}, run = ''),
                                                         ],
-                                                        className="module-input-change",
+                                                        className='module-input-change',
                                                         id={'type':'module-input-change','instance':moduleid},
                                                     ),
                                                     html.Div(
                                                         [
-                                                            html.Hr([],className="hr", style={'z-index':'-2','position':'absolute'}),
-                                                            html.Button('Save to HEAD', id={'type':'module-save','instance':moduleid}, type="button", n_clicks=0, className="module-save", style={'display': 'block'}),
+                                                            html.Hr([],className='hr', style={'z-index':'-2','position':'absolute'}),
+                                                            html.Button('Save to HEAD', id={'type':'module-save','instance':moduleid}, type='button', n_clicks=0, className='module-save', style={'display': 'block'}),
                                                             html.Div([
-                                                                dcc.Textarea(id={'type':'commit-text','instance':moduleid}, value='', readOnly=False, className="commit-text", style={'height':'38px','margin':'0px','background-color':'rgba(0,0,0,0.6)'}),
-                                                            ], className="commit-text-div",),
-                                                            html.Button('Commit',id={'type':'module-commit','instance':moduleid}, type="button", n_clicks=0,className="module-commit", style={'display': 'block'}),
+                                                                dcc.Textarea(id={'type':'commit-text','instance':moduleid}, value='', readOnly=False, className='commit-text', style={'height':'38px','margin':'0px','background-color':'rgba(0,0,0,0.6)'}),
+                                                            ], className='commit-text-div',),
+                                                            html.Button('Commit',id={'type':'module-commit','instance':moduleid}, type='button', n_clicks=0,className='module-commit', style={'display': 'block'}),
+                                                            html.Button('Branch',id={'type':'module-branch','instance':moduleid}, type='button', n_clicks=0,className='module-branch', style={'display': 'block'}),
+                                                            html.Button('Checkout',id={'type':'module-check','instance':moduleid}, type='button', n_clicks=0,className='module-check', style={'display': 'block'}),
+                                                            html.Button('Stash',id={'type':'module-stash','instance':moduleid}, type='button', n_clicks=0,className='module-stash', style={'display': 'block'}),
                                                         ],
                                                         className="module-button",
                                                         id={'type':'module-button','instance':moduleid},
@@ -166,7 +174,7 @@ def init_dashboard(server):
                                             html.Div(
                                                 [
                                                     #dcc.Textarea(id={'type':'my-output','instance':moduleid}, value='', readOnly=True, style={'width': '100%','whiteSpace': 'pre-line'}),
-                                                    html.Embed(id={'type':'my-output','instance':moduleid},src=git.dpath+modulename+'/'+'currentTex.html', className="embeds", style={'width': '100%','whiteSpace': 'pre-line'}),
+                                                    html.Iframe(id={'type':'my-output','instance':moduleid},src=git.dpath+modulename+'/'+'currentTex.html', className="embeds", style={'width': '100%','whiteSpace': 'pre-line'}),
                                                 ],
                                                 #className="grow-wrap",
                                                 className="wrap",
@@ -182,17 +190,32 @@ def init_dashboard(server):
                                                     html.Div(
                                                         [
                                                             html.H6("HEAD : "+moduleid,className="checkout"),
+                                                            dcc.Input(id={'type':'state','instance':moduleid},className="state", value='statetext'),
                                                         ],
                                                         className="title",
                                                         id={'type':'title','instance':moduleid},
                                                     ),
                                                     html.Div(
                                                         [
+                                                            html.Div(
+                                                                [
+                                                                ],
+                                                                id={'type':'graph-container','instance':moduleid},
+                                                                className="graph-container",
+                                                            ), 
                                                         ],
-                                                        id={'type':'graph-container','instance':moduleid},
-                                                        className="graph-container",
-                                                    ), 
-                                                    dcc.Textarea(id={'type':'graph-container-data','instance':moduleid}, value='', readOnly=True, style={'display':'none'}),
+                                                        className="mixblende",
+                                                    ),
+                                                    html.Div(
+                                                        [
+                                                            # html.Div([],className="avance-recule-circle"),
+                                                        ],
+                                                        className="avance-recule"
+                                                    ),
+                                                    dcc.Textarea(id={'type':'graph-container-data','instance':moduleid},className="gcd", value='', readOnly=True, style={'display':'none'}),
+                                                    dcc.Location(id={'type':'reset2','instance':moduleid}, refresh=True),
+                                                    dcc.Location(id={'type':'reset3','instance':moduleid}, refresh=True),
+                                                    dcc.Location(id={'type':'reset4','instance':moduleid}, refresh=True),
                                                 ],
                                                 className="version-style",
                                             ),
@@ -213,8 +236,9 @@ def init_dashboard(server):
         applayout = frontend + '\n'.join([modular_comp
                                         .replace("moduleid","\""+str(i)+"\"")
                                         .replace("modulename","\""+modules[i]+"\"")
-                                        .replace("moduletext",open(git.path+modules[i]+'/'+modules[i]+git.ext, "r")
-                                        .read()) for i in range(len(modules))]) + backend
+                                        .replace("moduletext",open(git.path+modules[i]+'/'+modules[i]+git.ext, "r").read().replace("\\","\\\\")) 
+                                        .replace("statetext",open(git.path+modules[i]+'/'+git.status+git.ext, "r").read()) 
+                                        for i in range(len(modules))]) + backend
         print(app)
         return eval(applayout)
     app.layout = serve_layout
@@ -258,19 +282,20 @@ def init_callbacks(app):
     )
 
 
-    @app.callback(Output({'type':'url2','instance':MATCH}, "href"),
+    @app.callback(Output({'type':'module-input-refresh','instance':MATCH}, "run"),
         Input({'type':'module-save','instance':MATCH}, component_property='n_clicks'),
         State({'type':'module-input-code','instance':MATCH}, 'value'),
         State({'type':'module-input-code','instance':MATCH}, 'id'),
         prevent_initial_call=True,
     )
     def save_module(n_clicks,value,id):
-        print("SAVEMODULE    ",value,id)
+        print("SAVEMODULE : ",value,id)
         modulename = str(int(id['instance']))
         with open(git.path+modulename+'/'+modulename+git.ext, "w") as f:
             f.write(value)
         git.latex_run(modulename)
-        return dash_prefix
+        return """var ele = document.getElementsByClassName('embeds')["""+modulename+"""];
+        ele.contentWindow.location.reload();"""
 
     @app.callback(Output("url", "href"),
         Input('module-new', component_property='n_clicks'),
@@ -290,6 +315,10 @@ def init_callbacks(app):
             except: print("path already exists ...")
             with open(ospath+modulename+git.ext, "a") as f:
                 f.write("")
+            with open(ospath+git.status+git.ext, "a") as f:
+                f.write(git.states[0])
+            with open(ospath+git.gitignore, "a") as f:
+                f.write(git.expfile)
             git.latex_run(modulename)
             git.git_sub_init(modulename,"new module "+modulename)
             # global modules
@@ -304,7 +333,7 @@ def init_callbacks(app):
     def export_PDF(n_clicks):
         global modules
         git.latex_export(modules)
-        return dash_prefix
+        return reg_prefix
 
     #GITGRAPH
     # app.clientside_callback(
@@ -328,18 +357,96 @@ def init_callbacks(app):
         modulename = str(int(id['instance']))
         os_path = git.path+modulename+'/'
         #wait for new module generation
-        time.sleep(0.05)
+        # time.sleep(0.05)
         #
         if value == "":
             value = "empty commit"
         git.git_update(modulename,value)
         git.git_parse(os_path)
         git.latex_run(modulename)
-        file_path = os_path+git.expfile
-        print(os.getcwd())
-        print(file_path)
-        return file_path
+        # print(os.getcwd())
+        # print(file_path)
+        return os_path+git.expfile
+
+    @app.callback(Output({'type':'reset2','instance':MATCH}, 'href'),
+        Input({'type':'module-branch','instance':MATCH}, component_property='n_clicks'),
+        State({'type':'module-branch','instance':MATCH}, 'id'),
+        State({'type':'commit-text','instance':MATCH}, 'value'),
+        prevent_initial_call=True,
+    )
+    def branch_log(n_clicks,id,value):
+        modulename = str(int(id['instance']))
+        os_path = git.path+modulename+'/'
+        #wait for new module generation
+        # time.sleep(0.05)
+        #
+        if value != "":
+            git.git_update_branch(modulename,value)
+            git.git_parse(os_path)
+            git.latex_run(modulename)
+            file_path = os_path+git.expfile
+            # print(os.getcwd())
+            # print(file_path)
+        return dash_prefix
+    
+    @app.callback(Output({'type':'reset3','instance':MATCH}, 'href'),
+        Input({'type':'module-check','instance':MATCH}, component_property='n_clicks'),
+        State({'type':'module-check','instance':MATCH}, 'id'),
+        State({'type':'commit-text','instance':MATCH}, 'value'),
+        prevent_initial_call=True,
+    )
+    def checkout_log(n_clicks,id,value):
+        modulename = str(int(id['instance']))
+        os_path = git.path+modulename+'/'
+        #wait for new module generation
+        # time.sleep(0.05)
+        #
+        if value != "":
+            git.git_checkout(modulename,value)
+            git.git_parse(os_path)
+        return dash_prefix
+
+    @app.callback(Output({'type':'reset4','instance':MATCH}, 'href'),
+        Input({'type':'module-stash','instance':MATCH}, component_property='n_clicks'),
+        State({'type':'module-stash','instance':MATCH}, 'id'),
+        prevent_initial_call=True,
+    )
+    def stash_log(n_clicks,id):
+        modulename = str(int(id['instance']))
+        git.git_stash(modulename)
+        return dash_prefix
+
+    @app.callback(Output({'type':'state','instance':MATCH}, "value"),
+        Input({'type':'state','instance':MATCH}, component_property='value'),
+        State({'type':'state','instance':MATCH}, 'id'),
+        State({'type':'state','instance':MATCH}, 'value'),
+        prevent_initial_call=True,
+    )
+    def save_state(n_clicks,id,value):
+        # print("SAVEMODULE : ",value,id)
+        modulename = str(int(id['instance']))
+        try: index = git.states.index(value[:len(value)-1])
+        except: index = -1
+        newInd = (index+1) % len(git.states)
+        newvalue = git.states[newInd]
+        with open(git.path+modulename+'/'+git.status+git.ext, "w") as f:
+            f.write(newvalue)
+        return newvalue
         
     # if __name__ == "__main__":
     #     app.run_server(debug=True)
+
+
+    #-------------------------------------------------
+    @app.callback(
+        Output('saved', 'children'),
+        Input('module-ss', 'n_clicks'),
+    )
+    def save_result(n_clicks):
+        if n_clicks == 0:
+            return 'not saved'
+        make_static(f'http://127.0.0.1:{port}/',target_dir='target')
+        make_static(f'http://127.0.0.1:{port}/doc/', target_dir='target/doc')
+        make_static(f'http://127.0.0.1:{port}/dashapp/', target_dir='target/dashapp')
+        return 'saved'
     
