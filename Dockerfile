@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 
 FROM ubuntu:latest
+ENV TZ=US/Eastern
+ARG DEBIAN_FRONTEND=noninteractive
 
 WORKDIR agilex-docker
 
