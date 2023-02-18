@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.8.1
+FROM nikolaik/python-nodejs:python3.10-nodejs19-slim
 
 WORKDIR agilex-docker
 
