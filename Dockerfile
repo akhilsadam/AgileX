@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1
 
-FROM nikolaik/python-nodejs:python3.10-nodejs19-slim
+FROM ubuntu:latest
 
 WORKDIR agilex-docker
 
 COPY requirements.txt requirements.txt
 
+RUN apt-get update -y && apt-get install -y python3-pip python3-dev build-essential git-all npm
 RUN pip3 install -r requirements.txt
-RUN sudo apt install git-all
 RUN npm install https://github.com/fabien0102/git2json
 
 COPY . .
