@@ -1,5 +1,6 @@
 :root {
 --aijiro: rgba(235, 246, 247, 1);
-color: var(--aijiro) !important;
+--aijiro-haiiro: #A0A3A4;
+color: var(--aijiro-haiiro) !important;
 }
 

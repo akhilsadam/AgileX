@@ -1,0 +1,5 @@
+
+\title{Notes on the Forward-Forward Algorithm}
+\author{Akhil Sadam}
+\date{February 2023}
+

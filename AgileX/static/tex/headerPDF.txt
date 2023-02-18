@@ -6,4 +6,3 @@
 \usepackage{parskip}
 %\usepackage{amsmath}
 \bibliographystyle{iopart-num}
-\begin{document}
